@@ -44,6 +44,7 @@ v0.4
      osx:     via "df /data/path" & "diskutil info /dev/disk1"
 
 desired features
+ - update windows drive model parsing script to adapt to differing script output
  - disk access time (ms)
  - disk capacity and drive letter (available on windows)
  - auto clear disk cache windows, linux, osx

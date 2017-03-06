@@ -160,6 +160,33 @@ public class Util {
      * Get the drive model description based on the windows drive letter. 
      * Uses the powershell script disk-model.ps1
      * 
+     * This appears to be the output of the original ps script before the update:
+     * 
+     * d:\>powershell -ExecutionPolicy ByPass -File tmp.ps1
+
+        DiskSize    : 128034708480
+        RawSize     : 117894545408
+        FreeSpace   : 44036825088
+        Disk        : \\.\PHYSICALDRIVE1
+        DriveLetter : C:
+        DiskModel   : SanDisk SD6SF1M128G
+        VolumeName  : OS_Install
+        Size        : 117894541312
+        Partition   : Disk #1, Partition #2
+
+        DiskSize    : 320070320640
+        RawSize     : 320070836224
+        FreeSpace   : 29038071808
+        Disk        : \\.\PHYSICALDRIVE2
+        DriveLetter : E:
+        DiskModel   : TOSHIBA External USB 3.0 USB Device
+        VolumeName  : TOSHIBA EXT
+        Size        : 320070832128
+        Partition   : Disk #2, Partition #0
+
+     * We should be able to modify the new parser to detect the 
+     * output type and adjust parsing as needed.
+     * 
      * @param driveLetter The single character drive letter.
      * @return Disk Drive Model description or empty string if not found.
      */
