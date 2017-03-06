@@ -132,6 +132,5 @@ public final class Gui {
         chart.getXYPlot().getRenderer().setSeriesVisibleInLegend(5, App.readTest);
         chart.getXYPlot().getRenderer().setSeriesVisibleInLegend(6, App.readTest&&App.showMaxMin);
         chart.getXYPlot().getRenderer().setSeriesVisibleInLegend(7, App.readTest&&App.showMaxMin);
-
     }
 }

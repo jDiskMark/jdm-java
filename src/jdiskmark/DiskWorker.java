@@ -73,6 +73,11 @@ public class DiskWorker extends SwingWorker <Boolean, DiskMark> {
             run.txSize = App.targetTxSizeKb();
             run.setDiskInfo(Util.getDiskInfo(dataDir));
             
+            msg("disk info: ("+ run.getDiskInfo()+")");
+            
+            Gui.chartPanel.getChart().getTitle().setVisible(true);
+            Gui.chartPanel.getChart().getTitle().setText(run.getDiskInfo());
+            
             if (App.multiFile == false) {
                 testFile = new File(dataDir.getAbsolutePath()+File.separator+"testdata.jdm");
             }            
@@ -156,6 +161,11 @@ public class DiskWorker extends SwingWorker <Boolean, DiskMark> {
             run.blockSize = App.blockSizeKb;
             run.txSize = App.targetTxSizeKb();
             run.setDiskInfo(Util.getDiskInfo(dataDir));
+              
+            msg("disk info: ("+ run.getDiskInfo()+")");
+            
+            Gui.chartPanel.getChart().getTitle().setVisible(true);
+            Gui.chartPanel.getChart().getTitle().setText(run.getDiskInfo());
             
             for (int m=startFileNum; m<startFileNum+App.numOfMarks && !isCancelled(); m++) {
                 

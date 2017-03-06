@@ -148,18 +148,22 @@ public class Util {
         } else if (osName.contains("Windows")) {
             // get disk info for windows
             String driveLetter = dataDirPath.getRoot().toFile().toString().split(":")[0];
-            return Util.getModelFromLetter(driveLetter);
+            return Util.getModelFromLetter2(driveLetter);
         }
         return "OS not supported";
     }
     
     /**
+     * This method became obsolete with an updated version of windows 10. 
+     * A newer version of the method is used.
+     * 
      * Get the drive model description based on the windows drive letter. 
      * Uses the powershell script disk-model.ps1
      * 
      * @param driveLetter The single character drive letter.
      * @return Disk Drive Model description or empty string if not found.
      */
+    @Deprecated
     public static String getModelFromLetter(String driveLetter) {
         try {
             Process p = Runtime.getRuntime().exec("powershell -ExecutionPolicy ByPass -File disk-model.ps1");
@@ -189,6 +193,44 @@ public class Util {
             }
         }
         catch(IOException | InterruptedException e) {}
+        return null;
+    }
+    
+    /**
+     * Get the drive model description based on the windows drive letter. 
+     * Uses the powershell script disk-model.ps1
+     * 
+     * Parses output such as the following:
+     * 
+     * DiskModel                          DriveLetter
+     * ---------                          -----------
+     * ST31500341AS ATA Device            D:         
+     * Samsung SSD 850 EVO 1TB ATA Device C:         
+     * 
+     * Tested on Windows 10 on 3/6/2017
+     * 
+     * @param driveLetter
+     * @return 
+     */
+    public static String getModelFromLetter2(String driveLetter) {
+        try {
+            Process p = Runtime.getRuntime().exec("powershell -ExecutionPolicy ByPass -File disk-model.ps1");
+            p.waitFor();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            String line = reader.readLine();
+
+            while (line != null) {
+                System.out.println(line);                    
+                if (line.trim().endsWith(driveLetter + ":")) {
+                    String model = line.split(driveLetter + ":")[0];
+                    System.out.println("model is: "+model);
+                    return model;
+                }
+                line = reader.readLine();
+            }
+        } catch(IOException | InterruptedException e) {
+            System.err.println("IO exception retrieveing disk info");
+        }
         return null;
     }
     
