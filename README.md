@@ -38,11 +38,12 @@ v0.3
 v0.4e (evaluation)
  - updated eclipselink to 2.6 allows auto schema update
  - improved gui initialization
- - windows disk model via powershell query
- - linux disk model via "df /data/path" & "lsblk /dev/path --output MODEL"
- - osx disk model via "df /data/path" & "diskutil info /dev/disk1"
+ - platform disk model info: 
+     windows: via powershell query
+     linux:   via "df /data/path" & "lsblk /dev/path --output MODEL"
+     osx:     via "df /data/path" & "diskutil info /dev/disk1"
 
 desired features
- - hard disk capacity and drive letter (windows)
- - auto clear disk cache linux
- - auto clear disk cache windows
+ - disk access time (ms)
+ - disk capacity and drive letter (available on windows)
+ - auto clear disk cache windows, linux, osx
