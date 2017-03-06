@@ -35,7 +35,7 @@ v0.3
  - changed graph background to dark gray
  - resizing main frame stretches tabbed pane instead of empty panel
 
-v0.4e (evaluation)
+v0.4
  - updated eclipselink to 2.6 allows auto schema update
  - improved gui initialization
  - platform disk model info: 
