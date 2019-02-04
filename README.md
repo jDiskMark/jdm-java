@@ -48,3 +48,6 @@ desired features
  - disk access time (ms)
  - disk capacity and drive letter (available on windows)
  - auto clear disk cache windows, linux, osx
+     linux: sync && echo 1 > /proc/sys/vm/drop_caches
+     windows: ???
+     osx: ???
