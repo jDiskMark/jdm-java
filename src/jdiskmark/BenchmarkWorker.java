@@ -128,6 +128,10 @@ public class BenchmarkWorker extends SwingWorker <Boolean, Sample> {
             run.blockSize = App.blockSizeKb;
             run.txSize = App.targetTxSizeKb();
             run.numThreads = App.numOfThreads;
+            
+            // persist whether write sync was enabled for this run
+            run.setWriteSyncEnabled(App.writeSyncEnable);
+
 
             Gui.chart.getTitle().setVisible(true);
             Gui.chart.getTitle().setText(run.getDriveInfo());
@@ -239,6 +243,10 @@ public class BenchmarkWorker extends SwingWorker <Boolean, Sample> {
             run.numBlocks = App.numOfBlocks;
             run.blockSize = App.blockSizeKb;
             run.txSize = App.targetTxSizeKb();
+            
+            // write sync does not apply to pure read benchmarks
+            run.setWriteSyncEnabled(null);
+
 
             Gui.chart.getTitle().setVisible(true);
             Gui.chart.getTitle().setText(run.getDriveInfo());
